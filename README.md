@@ -1,326 +1,253 @@
-# bolt.diy (Previously oTToDev)
-[![bolt.diy: AI-Powered Full-Stack Web Development in the Browser](./public/social_preview_index.jpg)](https://bolt.diy)
-
-Welcome to bolt.diy, the official open source version of Bolt.new (previously known as oTToDev and bolt.new ANY LLM), which allows you to choose the LLM that you use for each prompt! Currently, you can use OpenAI, Anthropic, Ollama, OpenRouter, Gemini, LMStudio, Mistral, xAI, HuggingFace, DeepSeek, or Groq models - and it is easily extended to use any other model supported by the Vercel AI SDK! See the instructions below for running this locally and extending it to include more models.
-
-Check the [bolt.diy Docs](https://stackblitz-labs.github.io/bolt.diy/) for more information. 
-
-We have also launched an experimental agent called the "bolt.diy Expert" that can answer common questions about bolt.diy. Find it here on the [oTTomator Live Agent Studio](https://studio.ottomator.ai/).
-
-bolt.diy was originally started by [Cole Medin](https://www.youtube.com/@ColeMedin) but has quickly grown into a massive community effort to build the BEST open source AI coding assistant!
-
-## Table of Contents
-
-- [Join the Community](#join-the-community)
-- [Requested Additions](#requested-additions)
-- [Features](#features)
-- [Setup](#setup)
-- [Run the Application](#run-the-application)
-- [Available Scripts](#available-scripts)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [FAQ](#faq)
-
-## Join the community
-
-[Join the bolt.diy community here, in the thinktank on ottomator.ai!](https://thinktank.ottomator.ai)
-
-
-## Requested Additions
-
-- ✅ OpenRouter Integration (@coleam00)
-- ✅ Gemini Integration (@jonathands)
-- ✅ Autogenerate Ollama models from what is downloaded (@yunatamos)
-- ✅ Filter models by provider (@jasonm23)
-- ✅ Download project as ZIP (@fabwaseem)
-- ✅ Improvements to the main bolt.new prompt in `app\lib\.server\llm\prompts.ts` (@kofi-bhr)
-- ✅ DeepSeek API Integration (@zenith110)
-- ✅ Mistral API Integration (@ArulGandhi)
-- ✅ "Open AI Like" API Integration (@ZerxZ)
-- ✅ Ability to sync files (one way sync) to local folder (@muzafferkadir)
-- ✅ Containerize the application with Docker for easy installation (@aaronbolton)
-- ✅ Publish projects directly to GitHub (@goncaloalves)
-- ✅ Ability to enter API keys in the UI (@ali00209)
-- ✅ xAI Grok Beta Integration (@milutinke)
-- ✅ LM Studio Integration (@karrot0)
-- ✅ HuggingFace Integration (@ahsan3219)
-- ✅ Bolt terminal to see the output of LLM run commands (@thecodacus)
-- ✅ Streaming of code output (@thecodacus)
-- ✅ Ability to revert code to earlier version (@wonderwhy-er)
-- ✅ Cohere Integration (@hasanraiyan)
-- ✅ Dynamic model max token length (@hasanraiyan)
-- ✅ Better prompt enhancing (@SujalXplores)
-- ✅ Prompt caching (@SujalXplores)
-- ✅ Load local projects into the app (@wonderwhy-er)
-- ✅ Together Integration (@mouimet-infinisoft)
-- ✅ Mobile friendly (@qwikode)
-- ✅ Better prompt enhancing (@SujalXplores)
-- ✅ Attach images to prompts (@atrokhym)
-- ✅ Added Git Clone button (@thecodacus)
-- ✅ Git Import from url (@thecodacus)
-- ✅ PromptLibrary to have different variations of prompts for different use cases (@thecodacus)
-- ✅ Detect package.json and commands to auto install & run preview for folder and git import (@wonderwhy-er)
-- ✅ Selection tool to target changes visually (@emcconnell)
-- ✅ Detect terminal Errors and ask bolt to fix it (@thecodacus)
-- ✅ Detect preview Errors and ask bolt to fix it (@wonderwhy-er)
-- ✅ Add Starter Template Options (@thecodacus)
-- ⬜ **HIGH PRIORITY** - Prevent bolt from rewriting files as often (file locking and diffs)
-- ⬜ **HIGH PRIORITY** - Better prompting for smaller LLMs (code window sometimes doesn't start)
-- ⬜ **HIGH PRIORITY** - Run agents in the backend as opposed to a single model call
-- ⬜ Deploy directly to Vercel/Netlify/other similar platforms
-- ⬜ Have LLM plan the project in a MD file for better results/transparency
-- ⬜ VSCode Integration with git-like confirmations
-- ⬜ Upload documents for knowledge - UI design templates, a code base to reference coding style, etc.
-- ⬜ Voice prompting
-- ⬜ Azure Open AI API Integration
-- ✅ Perplexity Integration (@meetpateltech)
-- ⬜ Vertex AI Integration
-
-## Features
-
-- **AI-powered full-stack web development** directly in your browser.
-- **Support for multiple LLMs** with an extensible architecture to integrate additional models.
-- **Attach images to prompts** for better contextual understanding.
-- **Integrated terminal** to view output of LLM-run commands.
-- **Revert code to earlier versions** for easier debugging and quicker changes.
-- **Download projects as ZIP** for easy portability.
-- **Integration-ready Docker support** for a hassle-free setup.
-
-## Setup 
-
-If you're new to installing software from GitHub, don't worry! If you encounter any issues, feel free to submit an "issue" using the provided links or improve this documentation by forking the repository, editing the instructions, and submitting a pull request. The following instruction will help you get the stable branch up and running on your local machine in no time.  
-
-Let's get you up and running with the stable version of Bolt.DIY!
-
-## Quick Download
-
-[![Download Latest Release](https://img.shields.io/github/v/release/stackblitz-labs/bolt.diy?label=Download%20Bolt&sort=semver)](https://github.com/stackblitz-labs/bolt.diy/releases/latest) ← Click here to go the the latest release version! 
-
-- Next **click source.zip**
-
-
-
-
-## Prerequisites
-
-Before you begin, you'll need to install two important pieces of software:
-
-### Install Node.js
-
-Node.js is required to run the application.
-
-1. Visit the [Node.js Download Page](https://nodejs.org/en/download/)
-2. Download the "LTS" (Long Term Support) version for your operating system
-3. Run the installer, accepting the default settings
-4. Verify Node.js is properly installed:
-   - **For Windows Users**:
-     1. Press `Windows + R`
-     2. Type "sysdm.cpl" and press Enter
-     3. Go to "Advanced" tab → "Environment Variables"
-     4. Check if `Node.js` appears in the "Path" variable
-   - **For Mac/Linux Users**:
-     1. Open Terminal
-     2. Type this command:
-        ```bash
-        echo $PATH
-        ```
-     3. Look for `/usr/local/bin` in the output
-
-## Running the Application
-
-You have two options for running Bolt.DIY: directly on your machine or using Docker.
-
-### Option 1: Direct Installation (Recommended for Beginners)
-
-1. **Install Package Manager (pnpm)**:
-   ```bash
-   npm install -g pnpm
-   ```
-
-2. **Install Project Dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-3. **Start the Application**:
-   ```bash
-   pnpm run dev
-   ```
-
-   **Important Note**: If you're using Google Chrome, you'll need Chrome Canary for local development. [Download it here](https://www.google.com/chrome/canary/)
-
-### Option 2: Using Docker
-
-This option requires some familiarity with Docker but provides a more isolated environment.
-
-#### Additional Prerequisite
-- Install Docker: [Download Docker](https://www.docker.com/)
-
-#### Steps:
-
-1. **Build the Docker Image**:
-   ```bash
-   # Using npm script:
-   npm run dockerbuild
-
-   # OR using direct Docker command:
-   docker build . --target bolt-ai-development
-   ```
-
-2. **Run the Container**:
-   ```bash
-   docker-compose --profile development up
-   ```
-
-
-
-
-## Configuring API Keys and Providers
-
-### Adding Your API Keys
-
-Setting up your API keys in Bolt.DIY is straightforward:
-
-1. Open the home page (main interface)
-2. Select your desired provider from the dropdown menu
-3. Click the pencil (edit) icon
-4. Enter your API key in the secure input field
-
-![API Key Configuration Interface](./docs/images/api-key-ui-section.png)
-
-### Configuring Custom Base URLs
-
-For providers that support custom base URLs (such as Ollama or LM Studio), follow these steps:
-
-1. Click the settings icon in the sidebar to open the settings menu
-   ![Settings Button Location](./docs/images/bolt-settings-button.png)
-
-2. Navigate to the "Providers" tab
-3. Search for your provider using the search bar
-4. Enter your custom base URL in the designated field
-   ![Provider Base URL Configuration](./docs/images/provider-base-url.png)
-
-> **Note**: Custom base URLs are particularly useful when running local instances of AI models or using custom API endpoints.
-
-### Supported Providers
-- Ollama
-- LM Studio
-- OpenAILike
-
-## Setup Using Git (For Developers only)
-
-This method is recommended for developers who want to:
-- Contribute to the project
-- Stay updated with the latest changes
-- Switch between different versions
-- Create custom modifications
-
-#### Prerequisites
-1. Install Git: [Download Git](https://git-scm.com/downloads)
-
-#### Initial Setup
-
-1. **Clone the Repository**:
-   ```bash
-   # Using HTTPS
-   git clone https://github.com/stackblitz-labs/bolt.diy.git
-   ```
-
-2. **Navigate to Project Directory**:
-   ```bash
-   cd bolt.diy
-   ```
-
-3. **Switch to the Main Branch**:
-   ```bash
-   git checkout main
-   ```
-4. **Install Dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-5. **Start the Development Server**:
-   ```bash
-   pnpm run dev
-   ```
-
-#### Staying Updated
-
-To get the latest changes from the repository:
-
-1. **Save Your Local Changes** (if any):
-   ```bash
-   git stash
-   ```
-
-2. **Pull Latest Updates**:
-   ```bash
-   git pull origin main
-   ```
-
-3. **Update Dependencies**:
-   ```bash
-   pnpm install
-   ```
-
-4. **Restore Your Local Changes** (if any):
-   ```bash
-   git stash pop
-   ```
-
-#### Troubleshooting Git Setup
-
-If you encounter issues:
-
-1. **Clean Installation**:
-   ```bash
-   # Remove node modules and lock files
-   rm -rf node_modules pnpm-lock.yaml
-
-   # Clear pnpm cache
-   pnpm store prune
-
-   # Reinstall dependencies
-   pnpm install
-   ```
-
-2. **Reset Local Changes**:
-   ```bash
-   # Discard all local changes
-   git reset --hard origin/main
-   ```
-
-Remember to always commit your local changes or stash them before pulling updates to avoid conflicts.
-
----
-
-## Available Scripts
-
-- **`pnpm run dev`**: Starts the development server.
-- **`pnpm run build`**: Builds the project.
-- **`pnpm run start`**: Runs the built application locally using Wrangler Pages.
-- **`pnpm run preview`**: Builds and runs the production build locally.
-- **`pnpm test`**: Runs the test suite using Vitest.
-- **`pnpm run typecheck`**: Runs TypeScript type checking.
-- **`pnpm run typegen`**: Generates TypeScript types using Wrangler.
-- **`pnpm run deploy`**: Deploys the project to Cloudflare Pages.
-- **`pnpm run lint:fix`**: Automatically fixes linting issues.
-
----
-
-## Contributing
-
-We welcome contributions! Check out our [Contributing Guide](CONTRIBUTING.md) to get started.
-
----
-
-## Roadmap
-
-Explore upcoming features and priorities on our [Roadmap](https://roadmap.sh/r/ottodev-roadmap-2ovzo).
-
----
-
-## FAQ
-
-For answers to common questions, issues, and to see a list of recommended models, visit our [FAQ Page](FAQ.md).
+![Bruce Main Menu](./media/pictures/bruce_banner.jpg)
+
+# :shark: Bruce
+
+Bruce é um firmware versátil para ESP32 que suporta diversos recursos ofensivos focados em facilitar operações de Red Team.
+Também suporta produtos m5stack e funciona perfeitamente com Cardputer, Sticks, M5Cores, T-Decks e T-Embeds.
+
+## :building_construction: Como instalar
+
+### A maneira mais fácil de instalar o Bruce é usando nosso Web Flasher oficial!
+### Acesse: https://bruce.computer/flasher
+
+Alternativamente, você pode baixar o binário mais recente das releases ou actions e fazer o flash localmente usando esptool.py
+```sh
+esptool.py --port /dev/ttyACM0 write_flash 0x00000 Bruce-<device>.bin
+```
+
+**Para dispositivos m5stack**
+
+Se você já usa o M5Launcher para gerenciar seu dispositivo m5stack, você pode instalá-lo via OTA
+
+Ou você pode gravar diretamente através da [ferramenta m5burner](https://docs.m5stack.com/en/download), basta procurar por 'Bruce' (Minhas builds oficiais serão enviadas por "owner" e têm fotos.) na categoria do dispositivo que você deseja e clicar em burn
+
+## :keyboard: Servidor Discord
+
+Entre em contato conosco em nosso [Servidor Discord](https://discord.gg/WJ9XF9czVT)!
+
+## :bookmark_tabs: Wiki
+
+Para mais informações sobre cada função suportada pelo Bruce, [leia nossa wiki aqui](https://github.com/pr3y/Bruce/wiki).
+Além disso, [leia nosso FAQ](https://github.com/pr3y/Bruce/wiki/FAQ)
+
+## :computer: Lista de Recursos
+
+<details>
+  <summary><h2>WiFi</h2></summary>
+  
+- [x] Conectar ao WiFi  
+- [x] WiFi AP  
+- [x] Desconectar WiFi  
+- [x] [Ataques WiFi](https://github.com/pr3y/Bruce/wiki/WiFi#wifi-atks)
+  - [x] [Beacon Spam](https://github.com/pr3y/Bruce/wiki/WiFi#beacon-spam)
+  - [x] [Ataque Direcionado](https://github.com/pr3y/Bruce/wiki/WiFi#target-atk)
+    - [x] Informação
+    - [x] Deauth Direcionado
+    - [x] EvilPortal + Deauth
+  - [x] Deauth Flood (Mais de um alvo)  
+- [x] [Wardriving](https://github.com/pr3y/Bruce/wiki/Wardriving)  
+- [x] [TelNet](https://github.com/pr3y/Bruce/wiki/WiFi#telnet)  
+- [x] [SSH](https://github.com/pr3y/Bruce/wiki/WiFi#ssh)  
+- [x] [Sniffer RAW](https://github.com/pr3y/Bruce/wiki/WiFi#raw-sniffer)  
+- [x] [Cliente TCP](https://github.com/pr3y/Bruce/wiki/WiFi#tcp-client)  
+- [x] [Listener TCP](https://github.com/pr3y/Bruce/wiki/WiFi#tcp-listener)  
+- [x] [DPWO-ESP32](https://github.com/pr3y/Bruce/wiki/WiFi#dpwo-esp32)  
+- [x] [Portal Malicioso](https://github.com/pr3y/Bruce/wiki/WiFi#evil-portal)  
+- [x] [Escanear Hosts](https://github.com/pr3y/Bruce/wiki/WiFi#evil-portal)  
+- [x] [Tunelamento Wireguard](https://github.com/pr3y/Bruce/wiki/WiFi#wireguard-tunneling)  
+- [x] Brucegotchi
+  - [x] Amigo do Pwnagotchi  
+  - [x] Spam de rostos e nomes no Pwngrid  
+    - [x] [Opcional] DoScreen com nome e rosto muito longos  
+    - [x] [Opcional] Flood de identificadores únicos de pares  
+
+</details>
+
+<details>
+  <summary><h2>BLE</h2></summary>
+    
+- [X] [Escaneamento BLE](https://github.com/pr3y/Bruce/wiki/BLE#ble-scan)
+- [X] Bad BLE - Executa scripts Ducky, similar ao [BadUsb](https://github.com/pr3y/Bruce/wiki/Others#badusb)
+- [X] Teclado BLE - Apenas Cardputer e T-Deck
+- [X] Spam iOS
+- [X] Spam Windows
+- [X] Spam Samsung
+- [X] Spam Android
+- [X] Spam Geral
+</details>
+
+
+<details>
+  <summary><h2>RF</h2></summary>
+    
+- [x] Escanear/Copiar
+- [x] [SubGhz Personalizado](https://github.com/pr3y/Bruce/wiki/RF#replay-payloads-like-flipper)
+- [x] Espectro
+- [x] Jammer Total (envia uma onda quadrada completa na saída)
+- [x] Jammer Intermitente (envia sinal PWM na saída)
+- [x] Configuração
+    - [X] Pino TX RF
+    - [X] Pino RX RF
+    - [X] Módulo RF
+        - [x] RF433 T/R M5Stack
+        - [x] [CC1101 (Sub-Ghz)](https://github.com/pr3y/Bruce/wiki/CC1101)
+    - [X] Frequência RF
+- [x] Replay
+</details>
+
+<details>
+  <summary><h2>RFID</h2></summary>
+    
+- [x] Ler tag
+- [x] Ler 125kHz
+- [x] Clonar tag
+- [x] Escrever registros NDEF
+- [x] Amiibolink
+- [x] Chameleon
+- [x] Escrever dados
+- [x] Apagar dados
+- [x] Salvar arquivo
+- [x] Carregar arquivo
+- [x] Configuração
+    - [X] [Módulo RFID](https://github.com/pr3y/Bruce/wiki/RFID#supported-modules)
+        - [x] PN532
+- [ ] Emular tag
+</details>
+
+<details>
+  <summary><h2>IR</h2></summary>
+    
+- [x] TV-B-Gone
+- [x] Receptor IR
+- [x] [IR Personalizado (NEC, NECext, SIRC, SIRC15, SIRC20, Samsung32, RC5, RC5X, RC6)](https://github.com/pr3y/Bruce/wiki/IR#replay-payloads-like-flipper)
+- [x] Configuração
+    - [X] Pino TX IR
+    - [X] Pino RX IR
+</details>
+
+<details>
+  <summary><h2>FM</h2></summary>
+    
+- [x] [Transmissão padrão](https://github.com/pr3y/Bruce/wiki/FM#play_or_pause_button-broadcast-standard)
+- [x] [Transmissão reservada](https://github.com/pr3y/Bruce/wiki/FM#no_entry_sign-broadcast-rerserved)
+- [x] [Parar transmissão](https://github.com/pr3y/Bruce/wiki/FM#stop_button-broadcast-stop)
+- [ ] [Espectro FM](https://github.com/pr3y/Bruce/wiki/FM#ocean-fm-spectrum)
+- [ ] [Sequestrar Anúncios de Tráfego](https://github.com/pr3y/Bruce/wiki/FM#car-hijack-ta)
+- [ ] [Configuração](https://github.com/pr3y/Bruce/wiki/FM#bookmark_tabs-config)
+</details>
+
+<details>
+  <summary><h2>NRF24</h2></summary>
+    
+- [X] [Jammer NRF24](https://github.com/pr3y/Bruce/wiki/BLE#nrf24-jammer)
+- [X] Espectro 2.4G
+- [ ] Mousejack
+</details>
+
+<details>
+  <summary><h2>Scripts</h2></summary>
+    
+- [X] [Interpretador JavaScript](https://github.com/pr3y/Bruce/wiki/Interpreter) [Créditos para justinknight93](https://github.com/justinknight93/Doolittle)
+</details>
+
+<details>
+  <summary><h2>Outros</h2></summary>
+    
+- [X] Espectro do Microfone
+- [X] QRCodes
+    - [x] Personalizado
+    - [x] PIX (sistema de transferência bancária brasileiro)
+- [x] [Gerenciador de Cartão SD](https://github.com/pr3y/Bruce/wiki/Others#sd-card-mngr)
+    - [x] Visualizar imagem (jpg)
+    - [x] Informações do arquivo
+    - [x] [Upload para Wigle](https://github.com/pr3y/Bruce/wiki/Wardriving#how-to-upload)
+    - [x] Reproduzir áudio
+    - [x] Visualizar arquivo
+- [x] [Gerenciador LittleFS](https://github.com/pr3y/Bruce/wiki/Others#littlefs-mngr)
+- [x] [WebUI](https://github.com/pr3y/Bruce/wiki/Others#webui)
+    - [x] Estrutura do servidor
+    - [x] Html
+    - [x] Gerenciador SDCard
+    - [x] Gerenciador Spiffs
+- [x] Megalodon
+- [x] [BADUsb (Novos recursos, LittleFS e SDCard)](https://github.com/pr3y/Bruce/wiki/Others#badusb)
+- [x] Teclado USB - Apenas Cardputer e T-Deck
+- [x] [Openhaystack](https://github.com/pr3y/Bruce/wiki/Others#openhaystack)
+- [x] [iButton](https://github.com/pr3y/Bruce/wiki/Others#ibutton)
+- [x] [Controle LED](https://github.com/pr3y/Bruce/wiki/Others#led-control)
+</details>
+
+<details>
+  <summary><h2>Relógio</h2></summary>
+    
+- [X] Suporte RTC
+- [X] Ajuste de hora NTP
+- [X] Ajuste manual
+</details>
+
+<details>
+  <summary><h2>Conectar (ESPNOW)</h2></summary>
+    
+- [X] Enviar arquivo
+- [X] Receber arquivo
+</details>
+
+<details>
+  <summary><h2>Configurações</h2></summary>
+    
+- [x] Brilho
+- [x] Tempo de escurecimento
+- [x] Orientação
+- [X] Cor da UI
+- [x] Som de inicialização on/off
+- [x] Relógio
+- [x] Modo dormir
+- [x] Reiniciar
+</details>
+
+## Funções específicas por dispositivo, as não mencionadas aqui estão disponíveis para todos.
+| Device                  | CC1101    | NRF24    | Interpreter  | FM Radio  | PN532     | Mic   | BadUSB    | RGB Led | Speaker   | Fuel Guage | LITE_MODE |
+| ---                     | :---:     | :---:    | :---:        | :---:     | :---:     | :---: | :---:     | :---:   | :---:     | :---:      | :---:     |
+| [M5Stack Cardputer](https://shop.m5stack.com/products/m5stack-cardputer-kit-w-m5stamps)       | :ok:      | :ok:     | :ok:         | :ok:      | :ok:      | :ok:  | :ok:      | :ok:    | NS4168    | :x:        | :x:       |
+| [M5Stack M5StickC PLUS2](https://shop.m5stack.com/products/m5stickc-plus2-esp32-mini-iot-development-kit)  | :ok:      | :ok:     | :ok:         | :ok:      | :ok:      | :ok:  | :ok:¹     | :x:     | Tone      | :x:        | :x:       |
+| [M5Stack M5StickC PLUS](https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit)   | :ok:      | :ok:     | :x:          | :ok:      | :ok:      | :ok:  | :ok:¹     | :x:     | Tone      | :x:        | :x:²      |
+| [M5Stack M5Core BASIC](https://shop.m5stack.com/products/basic-core-iot-development-kit)    | :x:       | :x:      | :x:          | :x:       | :x:       | :ok:  | :ok:¹     | :x:     | Tone      | :x:        | :x:       |
+| [M5Stack M5Core2 v1.1](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-development-kit-v1-1)    | :x:       | :x:      | :x:          | :x:       | :x:       | :ok:  | :ok:¹     | :x:     | :x:       | :x:        | :x:       |
+| [M5Stack M5CoreS3](https://shop.m5stack.com/products/m5stack-cores3-esp32s3-lotdevelopment-kit)/[SE](https://shop.m5stack.com/products/m5stack-cores3-se-iot-controller-w-o-battery-bottom)     | :x:       | :x:      | :ok:         | :x:       | :x:       | :x:   | :ok:      | :x:     | :x:       | :x:        | :x:       |
+| [JCZN CYD&#x2011;2432S028](https://www.aliexpress.us/item/3256804774970998.html)       | :ok:      | :ok:     | :ok:         | :x:       | :ok:      | :x:   | :ok:¹     | :x:     | :x:       | :x:        | :x:²      |
+| [Lilygo T&#x2011;Embed CC1101](https://lilygo.cc/products/t-embed-cc1101)   | :ok:      | :x:      | :ok:         | :x:       | :ok:      | :ok:  | :ok:      | :ok:    | :ok:      | :ok:       | :x:       |
+| [Lilygo T&#x2011;Embed](https://lilygo.cc/products/t-embed)          | :x:       | :x:      | :ok:         | :x:       | :ok:      | :ok:  | :ok:      | :ok:    | :ok:      | :x:        | :x:       |
+| [Lilygo T&#x2011;Deck](https://lilygo.cc/products/t-deck) ([and pro](https://lilygo.cc/products/t-deck-plus-1)) | :x:       | :x:      | :ok:         | :x:       | :x:       | :x:   | :ok:      | :x:     | :x:       | :x:        | :x:       |
+
+² CYD e StickCPlus 1.1 têm uma versão LITE_VERSION para Compatibilidade com o Launcher
+¹ BadUSB para Core, CYD e StickCs: [aqui](https://github.com/pr3y/Bruce/wiki/Others#badusb)
+
+*LITE_MODE*: TelNet, SSH, DPWO, WireGuard, ScanHosts, RawSniffer, Brucegotchi, BLEBacon, BLEScan, Interpreter e OpenHaystack NÃO estão disponíveis para Compatibilidade com M5Launcher
+
+
+## :sparkles: Por que e como é?
+
+O Bruce surgiu de uma observação atenta dentro da comunidade focada em dispositivos como o Flipper Zero. Embora esses dispositivos oferecessem uma visão do mundo da segurança ofensiva, havia uma sensação palpável de que algo mais poderia ser alcançado sem ser tão caro, particularmente com o robusto e modular ecossistema de hardware fornecido pelos dispositivos ESP32, produtos Lilygo e M5Stack.
+
+![Bruce Main Menu](./media/pictures/pic1.png)
+![Bruce on M5Core](./media/pictures/core.png)
+![Bruce on Stick](./media/pictures/stick.png)
+![Bruce on CYD](./media/pictures/cyd.png)
+
+Outras mídias podem ser [encontradas aqui](./media/).
+
+## :clap: Agradecimentos
+
++ [@bmorcelli](https://github.com/bmorcelli) por novo core e vários recursos novos, além de portar para muitos dispositivos!
++ [@IncursioHack](https://github.com/IncursioHack) por adicionar recursos dos módulos RF e RFID.
++ [@Luidiblu](https://github.com/Luidiblu) pela logo e assistência no design da UI.
++ [@eadmaster](https://github.com/eadmaster) por adicionar muitos recursos.
++ [@rennancockles](https://github.com/rennancockles) por muito código RFID, refatoração e outros recursos.
++ [@7h30th3r0n3](https://github.com/7h30th3r0n3) refatoração e muita ajuda com ataques WiFi.
++ [Smoochiee]() pelo design da PCB do Bruce.
++ [TH3_KR4K3N]() pelo design da PCB do extensor Stick cplus.
++ Todos que contribuíram de alguma forma para o projeto, obrigado :heart:
+
+## :construction: Aviso Legal
+
+Bruce é uma ferramenta para operações ofensivas cibernéticas e de red team, distribuída sob os termos da Licença Pública Geral Affero (AGPL). É destinada apenas para fins de teste de segurança legal e autorizado. O uso deste software para quaisquer atividades maliciosas ou não autorizadas é estritamente proibido. Ao baixar, instalar ou usar o Bruce, você concorda em cumprir todas as leis e regulamentos aplicáveis. Este software é fornecido gratuitamente, e não aceitamos pagamentos por cópias ou modificações. Os desenvolvedores do Bruce não assumem nenhuma responsabilidade por qualquer uso indevido do software. Use por sua conta e risco.
